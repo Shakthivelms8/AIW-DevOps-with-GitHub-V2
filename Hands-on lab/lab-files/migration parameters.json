@@ -95,7 +95,7 @@
       "value": "Disabled"
     },
     "serverName": {
-      "value": "lab-sqldatabase"
+      "value": "lab-sqlserver"
     },
     "databaseName": {
       "value": "lab-sqldatabase"
