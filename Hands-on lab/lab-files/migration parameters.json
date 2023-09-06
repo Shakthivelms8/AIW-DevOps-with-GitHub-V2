@@ -95,10 +95,10 @@
       "value": "Disabled"
     },
     "serverName": {
-      "value": "labvm-sqldatabase"
+      "value": "lab-sqldatabase"
     },
     "databaseName": {
-      "value": "labvm-sqldatabase"
+      "value": "lab-sqldatabase"
     },
     "serviceName": {
       "value": "mysqldatabase"
