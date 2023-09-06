@@ -159,11 +159,9 @@
         },
         "serverName": {
           "type": "string",
-          "defaultValue": "labvm-sqlserver"
         },
         "databaseName": {
           "type": "string",
-          "defaultValue": "labvm-sqldatabase"
         },
         "serviceName": {
           "type": "string",
