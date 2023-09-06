@@ -52,12 +52,6 @@
       "AppSecret": {
         "type": "string"
       },
-      "resourceNamePrefix": {
-          "type": "string",
-          "metadata": {
-            "description": "Provide a prefix for creating resource names."
-          }
-        },
         "dbusername": {
           "type": "string"
         },
@@ -165,11 +159,11 @@
         },
         "serverName": {
           "type": "string",
-          "defaultValue": "[format('{0}mysqlserver', parameters('resourceNamePrefix'))]"
+          "defaultValue": "labvm-sqlserver"
         },
         "databaseName": {
           "type": "string",
-          "defaultValue": "[format('{0}mysqldb', parameters('resourceNamePrefix'))]"
+          "defaultValue": "labvm-sqldatabase"
         },
         "serviceName": {
           "type": "string",
