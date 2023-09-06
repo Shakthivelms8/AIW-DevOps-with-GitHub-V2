@@ -158,10 +158,10 @@
           ]
         },
         "serverName": {
-          "type": "string",
+          "type": "string"
         },
         "databaseName": {
-          "type": "string",
+          "type": "string"
         },
         "serviceName": {
           "type": "string",
