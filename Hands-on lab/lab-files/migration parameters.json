@@ -44,9 +44,6 @@
     "resourceNamePrefix": {
       "value": "labvm"
     },
-    "location": {
-      "value": "[resourceGroup().location]"
-    },
     "dbusername": {
       "value": "azuresqluser"
     },
