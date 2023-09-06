@@ -58,10 +58,6 @@
             "description": "Provide a prefix for creating resource names."
           }
         },
-        "location": {
-          "type": "string",
-          "defaultValue": "[resourceGroup().location]"
-        },
         "dbusername": {
           "type": "string"
         },
