@@ -41,9 +41,6 @@
     "AppSecret": {
       "value": "GET-SERVICEPRINCIPAL-SECRET"
     },
-    "resourceNamePrefix": {
-      "value": "labvm"
-    },
     "dbusername": {
       "value": "azuresqluser"
     },
