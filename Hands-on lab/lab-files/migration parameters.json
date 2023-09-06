@@ -98,10 +98,10 @@
       "value": "Disabled"
     },
     "serverName": {
-      "value": "[format('{0}mysqlserver', parameters('resourceNamePrefix'))]"
+      "value": "labvm-sqldatabase"
     },
     "databaseName": {
-      "value": "[format('{0}mysqldb', parameters('resourceNamePrefix'))]"
+      "value": "labvm-sqldatabase"
     },
     "serviceName": {
       "value": "mysqldatabase"
