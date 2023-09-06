@@ -367,7 +367,7 @@
           "type": "Microsoft.DBforMySQL/flexibleServers",
           "apiVersion": "2021-12-01-preview",
           "name": "[parameters('serverName')]",
-          "location": "[parameters('location')]",
+          "location": "[variables('location')]",
           "sku": {
             "name": "[parameters('skuName')]",
             "tier": "[parameters('serverEdition')]"
@@ -470,7 +470,7 @@
           "type": "Microsoft.DataMigration/services",
           "apiVersion": "2021-10-30-preview",
           "name": "[parameters('serviceName')]",
-          "location": "[parameters('location')]",
+          "location": "[variables('location')]",
           "sku": {
             "tier": "Standard",
             "size": "1 vCores",
