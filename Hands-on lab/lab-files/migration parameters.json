@@ -93,15 +93,6 @@
     },
     "geoRedundantBackup": {
       "value": "Disabled"
-    },
-    "serverName": {
-      "value": "sqlserver"
-    },
-    "databaseName": {
-      "value": "sqldatabase"
-    },
-    "serviceName": {
-      "value": "sqlservice"
     }
   }
 }
