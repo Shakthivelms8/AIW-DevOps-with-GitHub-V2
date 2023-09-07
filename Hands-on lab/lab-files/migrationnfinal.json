@@ -58,10 +58,22 @@
         "dbpasswd": {
           "type": "securestring"
         },
-         "firewallRules": {
-            "type": "object",
-            "defaultValue": {}
+        "firewallRules": {
+          "type": "string",
+          "defaultValue": [
+            {
+	      "name": "rule1",    
+              "startIPAddress": "192.168.0.1",
+              "endIPAddress": "192.168.0.255"
+            },
+            {
+	      "name": "rule2",
+              "startIPAddress": "192.168.1.1",
+              "endIPAddress": "192.168.1.255"
+            }
+          ]
         },
+
         "serverEdition": {
           "type": "string",
           "defaultValue": "Burstable",
@@ -177,7 +189,7 @@
       "publicIpAddressName1": "[concat(variables('jumphost'), '-pip')]",
       "vmPublicIpDnsName": "[concat('labvm',uniqueString(resourceGroup().id))]",
       "networkSecurityGroupName1": "[concat(variables('jumphost'), '-nsg')]",
-      "firewallRules": "[parameters('firewallRules').rules]"    
+       
     },
     "resources": [
       {
@@ -385,13 +397,13 @@
         {
           "copy": {
             "name": "createFirewallRules",
-            "count": "[length(range(0, if(greater(length(variables('firewallRules')), 0), length(variables('firewallRules')), 1)))]",
+            "count": "[length(range(0, if(greater(length(parameters('firewallRules')), 0), length(parameters('firewallRules')), 1)))]",
             "mode": "serial",
             "batchSize": 1
           },
           "type": "Microsoft.Resources/deployments",
           "apiVersion": "2020-10-01",
-          "name": "[format('firewallRules-{0}', range(0, if(greater(length(variables('firewallRules')), 0), length(variables('firewallRules')), 1))[copyIndex()])]",
+          "name": "[format('firewallRules-{0}', range(0, if(greater(length(parameters('firewallRules')), 0), length(parameters('firewallRules')), 1))[copyIndex()])]",
           "properties": {
             "expressionEvaluationOptions": {
               "scope": "inner"
@@ -399,7 +411,7 @@
             "mode": "Incremental",
             "parameters": {
               "ip": {
-                "value": "[variables('firewallRules')[range(0, if(greater(length(variables('firewallRules')), 0), length(variables('firewallRules')), 1))[copyIndex()]]]"
+                "value": "[parameters('firewallRules')[range(0, if(greater(length(parameters('firewallRules')), 0), length(parameters('firewallRules')), 1))[copyIndex()]]]"
               },
               "serverName": {
                 "value": "[parameters('serverName')]"
