@@ -176,7 +176,8 @@
       "subnetRef1": "[concat(variables('vnetId1'), '/subnets/', variables('subnetName1'))]",
       "publicIpAddressName1": "[concat(variables('jumphost'), '-pip')]",
       "vmPublicIpDnsName": "[concat('labvm',uniqueString(resourceGroup().id))]",
-      "networkSecurityGroupName1": "[concat(variables('jumphost'), '-nsg')]"
+      "networkSecurityGroupName1": "[concat(variables('jumphost'), '-nsg')]",
+      "firewallRules": "[parameters('firewallRules').rules]"    
     },
     "resources": [
       {
@@ -384,13 +385,13 @@
         {
           "copy": {
             "name": "createFirewallRules",
-            "count": "[length(range(0, if(greater(length(parameters('firewallRules')), 0), length(parameters('firewallRules')), 1)))]",
+            "count": "[length(range(0, if(greater(length(variables('firewallRules')), 0), length(variables('firewallRules')), 1)))]",
             "mode": "serial",
             "batchSize": 1
           },
           "type": "Microsoft.Resources/deployments",
           "apiVersion": "2020-10-01",
-          "name": "[format('firewallRules-{0}', range(0, if(greater(length(parameters('firewallRules')), 0), length(parameters('firewallRules')), 1))[copyIndex()])]",
+          "name": "[format('firewallRules-{0}', range(0, if(greater(length(variables('firewallRules')), 0), length(variables('firewallRules')), 1))[copyIndex()])]",
           "properties": {
             "expressionEvaluationOptions": {
               "scope": "inner"
@@ -398,7 +399,7 @@
             "mode": "Incremental",
             "parameters": {
               "ip": {
-                "value": "[parameters('firewallRules')[range(0, if(greater(length(parameters('firewallRules')), 0), length(parameters('firewallRules')), 1))[copyIndex()]]]"
+                "value": "[variables('firewallRules')[range(0, if(greater(length(variables('firewallRules')), 0), length(variables('firewallRules')), 1))[copyIndex()]]]"
               },
               "serverName": {
                 "value": "[parameters('serverName')]"
