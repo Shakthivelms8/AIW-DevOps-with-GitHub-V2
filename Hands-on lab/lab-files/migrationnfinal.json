@@ -59,7 +59,7 @@
           "type": "securestring"
         },
          "firewallRules": {
-            "type": "object",
+            "type": "string",
             "defaultValue": {}
         },
         "serverEdition": {
