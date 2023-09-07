@@ -157,18 +157,6 @@
             "Disabled",
             "Enabled"
           ]
-        },
-        "serverName": {
-          "type": "string"
-        },
-        "databaseName": {
-          "type": "string"
-        },
-        "serviceName": {
-          "type": "string",
-          "metadata": {
-            "description": "Name of the new migration service."
-          }
         }
     },
     "variables": {
@@ -189,7 +177,9 @@
       "publicIpAddressName1": "[concat(variables('jumphost'), '-pip')]",
       "vmPublicIpDnsName": "[concat('labvm',uniqueString(resourceGroup().id))]",
       "networkSecurityGroupName1": "[concat(variables('jumphost'), '-nsg')]",
-       
+      "serverName": [concat('sqlserver-',parameters('DeploymentID'))]
+      "databaseName": [concat('sqldb-',parameters('DeploymentID'))]
+      "serviceName": [concat('sqlservice-',parameters('DeploymentID'))]
     },
     "resources": [
       {
@@ -356,7 +346,7 @@
       {
           "type": "Microsoft.DBforMySQL/flexibleServers",
           "apiVersion": "2021-12-01-preview",
-          "name": "[parameters('serverName')]",
+          "name": "[variables('serverName')]",
           "location": "[variables('location')]",
           "sku": {
             "name": "[parameters('skuName')]",
@@ -385,13 +375,13 @@
         {
           "type": "Microsoft.DBforMySQL/flexibleServers/databases",
           "apiVersion": "2021-12-01-preview",
-          "name": "[format('{0}/{1}', parameters('serverName'), parameters('databaseName'))]",
+          "name": "[format('{0}/{1}', variables('serverName'), variables('databaseName'))]",
           "properties": {
             "charset": "utf8",
             "collation": "utf8_general_ci"
           },
           "dependsOn": [
-            "[resourceId('Microsoft.DBforMySQL/flexibleServers', parameters('serverName'))]"
+            "[resourceId('Microsoft.DBforMySQL/flexibleServers', variables('serverName'))]"
           ]
         },
         {
@@ -414,7 +404,7 @@
                 "value": "[parameters('firewallRules')[range(0, if(greater(length(parameters('firewallRules')), 0), length(parameters('firewallRules')), 1))[copyIndex()]]]"
               },
               "serverName": {
-                "value": "[parameters('serverName')]"
+                "value": "[variables('serverName')]"
               }
             },
             "template": {
@@ -432,7 +422,7 @@
                 {
                   "type": "Microsoft.DBforMySQL/flexibleServers/firewallRules",
                   "apiVersion": "2021-12-01-preview",
-                  "name": "[format('{0}/{1}', parameters('serverName'), parameters('ip').name)]",
+                  "name": "[format('{0}/{1}', variables('serverName'), parameters('ip').name)]",
                   "properties": {
                     "startIpAddress": "[parameters('ip').startIPAddress]",
                     "endIpAddress": "[parameters('ip').endIPAddress]"
@@ -442,7 +432,7 @@
             }
           },
           "dependsOn": [
-            "[resourceId('Microsoft.DBforMySQL/flexibleServers', parameters('serverName'))]"
+            "[resourceId('Microsoft.DBforMySQL/flexibleServers', variables('serverName'))]"
           ]
         },
         {
@@ -459,7 +449,7 @@
         {
           "type": "Microsoft.DataMigration/services",
           "apiVersion": "2021-10-30-preview",
-          "name": "[parameters('serviceName')]",
+          "name": "[variables('serviceName')]",
           "location": "[variables('location')]",
           "sku": {
             "tier": "Standard",
