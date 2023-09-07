@@ -48,19 +48,21 @@
       "value": "Password.1!!"
     },
     "firewallRules": {
-      "value": [
-        {
-          "name": "rule1",
-          "startIPAddress": "192.168.0.1",
-          "endIPAddress": "192.168.0.255"
-        },
-        {
-          "name": "rule2",
-          "startIPAddress": "192.168.1.1",
-          "endIPAddress": "192.168.1.255"
-        }
-      ]
+    "value": {
+     "rules": [
+    {
+    "name": "rule1",
+    "startIPAddress": "192.168.0.1",
+    "endIPAddress": "192.168.0.255"
     },
+    {
+    "name": "rule2",
+    "startIPAddress": "192.168.1.1",
+    "endIPAddress": "192.168.1.255"
+    }
+  ]
+ }
+},
     "serverEdition": {
       "value": "Burstable"
     },
