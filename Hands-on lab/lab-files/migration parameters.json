@@ -97,13 +97,13 @@
       "value": "Disabled"
     },
     "serverName": {
-      "value": "lab-sqlserver"
+      "value": "[concat('sqlserver-',parameters('DeploymentID'))]"
     },
     "databaseName": {
-      "value": "lab-sqldatabase"
+      "value": "[concat('sqldatabase-',parameters('DeploymentID'))]"
     },
     "serviceName": {
-      "value": "mysqldatabase"
+      "value": "[concat('sqlservice-',parameters('DeploymentID'))]"
     }
   }
 }
