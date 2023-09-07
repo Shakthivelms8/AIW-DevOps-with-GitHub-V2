@@ -95,13 +95,13 @@
       "value": "Disabled"
     },
     "serverName": {
-      "value": "[concat('sqlserver-',parameters('DeploymentID'))]"
+      "value": "sqlserver"
     },
     "databaseName": {
-      "value": "[concat('sqldatabase-',parameters('DeploymentID'))]"
+      "value": "sqldatabase"
     },
     "serviceName": {
-      "value": "[concat('sqlservice-',parameters('DeploymentID'))]"
+      "value": "sqlservice"
     }
   }
 }
