@@ -177,9 +177,9 @@
       "publicIpAddressName1": "[concat(variables('jumphost'), '-pip')]",
       "vmPublicIpDnsName": "[concat('labvm',uniqueString(resourceGroup().id))]",
       "networkSecurityGroupName1": "[concat(variables('jumphost'), '-nsg')]",
-      "serverName": [concat('sqlserver-',parameters('DeploymentID'))]
-      "databaseName": [concat('sqldb-',parameters('DeploymentID'))]
-      "serviceName": [concat('sqlservice-',parameters('DeploymentID'))]
+      "serverName": "[concat('sqlserver-',parameters('DeploymentID'))]",
+      "databaseName": "[concat('sqldb-',parameters('DeploymentID'))]",
+      "serviceName": "[concat('sqlservice-',parameters('DeploymentID'))]"
     },
     "resources": [
       {
